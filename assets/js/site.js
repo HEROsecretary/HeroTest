@@ -165,11 +165,94 @@
     });
   }
 
+  function initBackToTop() {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>';
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+
+    var ticking = false;
+    function update() {
+      btn.classList.toggle('is-visible', window.scrollY > 600);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  }
+
+  function initCountdown() {
+    var root = document.querySelector('[data-countdown]');
+    if (!root) return;
+
+    var target = new Date(root.getAttribute('data-countdown')).getTime();
+    var daysEl = root.querySelector('[data-unit="days"]');
+    var hoursEl = root.querySelector('[data-unit="hours"]');
+    var minsEl = root.querySelector('[data-unit="minutes"]');
+    var secsEl = root.querySelector('[data-unit="seconds"]');
+
+    function tick() {
+      var diff = target - Date.now();
+      if (diff <= 0) {
+        root.classList.add('is-past');
+        clearInterval(timer);
+        return;
+      }
+      var days = Math.floor(diff / 86400000);
+      var hours = Math.floor((diff % 86400000) / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      var secs = Math.floor((diff % 60000) / 1000);
+      if (daysEl) daysEl.textContent = days;
+      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+      if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
+      if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
+    }
+
+    tick();
+    var timer = setInterval(tick, 1000);
+  }
+
+  function initScrollspy() {
+    var links = document.querySelectorAll('.tab-nav a[href^="#"]');
+    if (links.length === 0) return;
+
+    var sections = [];
+    links.forEach(function (link) {
+      var id = link.getAttribute('href').slice(1);
+      var section = document.getElementById(id);
+      if (section) sections.push({ id: id, el: section, link: link });
+    });
+    if (sections.length === 0) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var match = sections.find(function (s) { return s.el === entry.target; });
+        if (!match) return;
+        if (entry.isIntersecting) {
+          links.forEach(function (l) { l.classList.remove('is-active'); });
+          match.link.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+
+    sections.forEach(function (s) { observer.observe(s.el); });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initNav();
     initCarousels();
     initHeaderScroll();
     initStatCounters();
     initScrollReveal();
+    initBackToTop();
+    initCountdown();
+    initScrollspy();
   });
 })();

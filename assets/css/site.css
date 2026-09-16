@@ -426,7 +426,16 @@ html.is-scrolled .brand { font-size: .92rem; }
 
 /* Team card (oversight.html) */
 .team-card { text-align: center; padding: 2rem 1.5rem; }
-.team-card .person-photo { max-width: 190px; margin-inline: auto; }
+.team-card .person-photo {
+  aspect-ratio: 3/4;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 0 auto 1.1rem;
+  max-width: 190px;
+  background: var(--navy-50);
+  box-shadow: var(--shadow-sm);
+}
+.team-card .person-photo img { width: 100%; height: 100%; object-fit: cover; }
 .team-card h3 { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--red-600); margin-bottom: .7em; }
 .team-card p { color: var(--ink); font-weight: 600; margin-bottom: 0; }
 
@@ -670,6 +679,68 @@ table.table-clean tr:nth-child(even) { background: var(--navy-50); }
   padding: 0;
 }
 .carousel-dots button.is-active { background: #fff; width: 22px; border-radius: 5px; }
+
+/* ---------- Back to top ---------- */
+.back-to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: var(--navy-900);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  z-index: 900;
+  opacity: 0;
+  translate: 0 12px;
+  pointer-events: none;
+  transition: opacity .2s ease, translate .2s ease, background-color .2s ease;
+}
+.back-to-top.is-visible { opacity: 1; translate: 0 0; pointer-events: auto; }
+.back-to-top:hover { background: var(--red-600); }
+.back-to-top svg { width: 20px; height: 20px; }
+
+/* ---------- Countdown ---------- */
+.countdown {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+.countdown .unit { text-align: center; min-width: 72px; }
+.countdown .unit .num {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 1.5rem + 1vw, 2.4rem);
+  color: var(--navy-900);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.countdown .unit .lbl {
+  display: block;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: .4em;
+}
+.countdown.is-past { display: none; }
+
+/* ---------- Scrollspy tab nav ---------- */
+.tab-nav a.is-active {
+  background: var(--navy-900);
+  border-color: var(--navy-900);
+  color: #fff;
+}
 
 /* ---------- Responsive tweaks ---------- */
 @media (max-width: 760px) {

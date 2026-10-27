@@ -333,8 +333,11 @@ html.is-scrolled .brand { font-size: .92rem; }
   max-width: 18ch;
   margin-bottom: .4em;
 }
+.hero .hero-title { max-width: none; }
+.hero .hero-title .title-line { display: block; white-space: nowrap; }
 @media (max-width: 600px) {
-  .hero:not(.hero-compact) h1 { max-width: min-content; }
+  .hero .hero-title { max-width: min-content; }
+  .hero .hero-title .title-line { display: inline; white-space: normal; }
 }
 .hero .lede {
   color: rgba(255, 255, 255, .82);

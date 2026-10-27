@@ -333,6 +333,9 @@ html.is-scrolled .brand { font-size: .92rem; }
   max-width: 18ch;
   margin-bottom: .4em;
 }
+@media (max-width: 600px) {
+  .hero:not(.hero-compact) h1 { max-width: min-content; }
+}
 .hero .lede {
   color: rgba(255, 255, 255, .82);
   font-size: clamp(1rem, .9rem + .4vw, 1.2rem);

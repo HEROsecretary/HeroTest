@@ -110,9 +110,10 @@
     function animate(el) {
       var target = parseInt(el.getAttribute('data-count-to'), 10) || 0;
       var suffix = el.getAttribute('data-suffix') || '';
+      var prefix = el.getAttribute('data-prefix') || '';
 
       if (prefersReducedMotion) {
-        el.textContent = target + suffix;
+        el.textContent = prefix + target + suffix;
         return;
       }
 
@@ -123,7 +124,7 @@
         if (start === null) start = timestamp;
         var progress = Math.min((timestamp - start) / duration, 1);
         var eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(eased * target) + suffix;
+        el.textContent = prefix + Math.round(eased * target) + suffix;
         if (progress < 1) requestAnimationFrame(step);
       }
 

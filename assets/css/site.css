@@ -332,6 +332,12 @@ html.is-scrolled .brand { font-size: .92rem; }
     radial-gradient(50% 50% at 0% 100%, rgba(43, 98, 143, .35), transparent 60%);
 }
 .hero .container { position: relative; }
+.hero-row { display: flex; align-items: center; justify-content: space-between; gap: clamp(1.5rem, 4vw, 3rem); }
+.hero-seal { width: clamp(220px, 27vw, 340px); min-width: 120px; height: auto; flex: 0 1 auto; }
+@media (max-width: 760px) {
+  .hero-row { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; }
+  .hero-seal { width: 104px; }
+}
 .hero h1 {
   color: #fff;
   font-size: clamp(2.1rem, 1.6rem + 2.4vw, 3.4rem);
@@ -585,6 +591,7 @@ table.table-clean tr:nth-child(even) { background: var(--navy-50); }
   padding-block: 3rem 2.2rem;
   text-align: center;
 }
+.site-footer .footer-seal { width: 88px; height: auto; margin: 0 auto 1.4rem; opacity: .92; }
 .site-footer .foot-icons {
   list-style: none;
   display: flex;

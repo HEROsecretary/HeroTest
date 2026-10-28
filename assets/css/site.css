@@ -647,13 +647,20 @@ table.table-clean tr:nth-child(even) { background: var(--navy-50); }
 }
 .carousel-caption {
   position: absolute;
-  left: clamp(1.25rem, 3vw, 2.5rem);
-  bottom: clamp(1.25rem, 3vw, 2.5rem);
+  left: 0; right: 0;
+  bottom: .7rem;
   z-index: 2;
   color: #fff;
-  font-size: clamp(1.3rem, 1rem + 1.5vw, 2rem);
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: clamp(.72rem, .65rem + .3vw, .9rem);
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0;
+  padding-inline: 5.5rem;
 }
 .carousel-controls {
   position: absolute;
@@ -679,8 +686,8 @@ table.table-clean tr:nth-child(even) { background: var(--navy-50); }
 .carousel-btn:hover { background: rgba(200, 32, 47, .85); }
 .carousel-dots {
   position: absolute;
-  bottom: clamp(1.25rem, 3vw, 2.5rem);
-  right: clamp(1.25rem, 3vw, 2.5rem);
+  bottom: .85rem;
+  right: 1rem;
   display: flex;
   gap: .5rem;
   z-index: 2;

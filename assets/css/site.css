@@ -48,6 +48,17 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
+/* Large monitors: scale type and the content column up so the site doesn't
+   look tiny in a narrow strip. rem-based sizes follow the root font size. */
+@media (min-width: 1800px) {
+  html { font-size: 112.5%; }
+  :root { --container: 1320px; --header-h: 84px; }
+}
+@media (min-width: 2200px) {
+  html { font-size: 125%; }
+  :root { --container: 1480px; --header-h: 92px; }
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -156,6 +167,8 @@ section.section.navy p { color: rgba(255, 255, 255, .78); }
 
 /* ---------- Header / Nav ---------- */
 html.is-scrolled { --header-h: 56px; }
+@media (min-width: 1800px) { html.is-scrolled { --header-h: 62px; } }
+@media (min-width: 2200px) { html.is-scrolled { --header-h: 68px; } }
 
 .site-header {
   position: fixed;
@@ -174,7 +187,7 @@ html.is-scrolled .site-header {
 }
 
 .site-header .container {
-  max-width: 1680px;
+  max-width: calc(var(--container) + 24rem);
   height: 100%;
   display: flex;
   align-items: center;

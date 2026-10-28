@@ -174,6 +174,7 @@ html.is-scrolled .site-header {
 }
 
 .site-header .container {
+  max-width: 1680px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -220,6 +221,10 @@ html.is-scrolled .brand { font-size: .92rem; }
 .brand { transition: font-size .2s ease; }
 .brand .brand-short { display: none; }
 
+@media (max-width: 1499px) and (min-width: 1200px) {
+  .brand .brand-full { display: none; }
+  .brand .brand-short { display: inline; }
+}
 @media (max-width: 560px) {
   .brand .brand-full { display: none; }
   .brand .brand-short { display: inline; }
@@ -229,7 +234,7 @@ html.is-scrolled .brand { font-size: .92rem; }
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 1.7rem;
+  gap: 1.15rem;
   margin: 0;
   padding: 0;
 }
@@ -237,7 +242,7 @@ html.is-scrolled .brand { font-size: .92rem; }
 .site-nav a {
   color: rgba(255, 255, 255, .82);
   font-weight: 500;
-  font-size: .92rem;
+  font-size: .86rem;
   white-space: nowrap;
 }
 .site-nav a:hover, .site-nav a.is-active { color: #fff; }
@@ -257,7 +262,7 @@ html.is-scrolled .brand { font-size: .92rem; }
 .nav-toggle:hover { background: rgba(255, 255, 255, .08); }
 .nav-toggle svg { width: 22px; height: 22px; }
 
-@media (max-width: 1500px) {
+@media (max-width: 1199px) {
   .nav-toggle { display: flex; }
   .site-nav {
     position: fixed;
@@ -331,11 +336,12 @@ html.is-scrolled .brand { font-size: .92rem; }
     radial-gradient(60% 60% at 85% 0%, rgba(217, 49, 63, .25), transparent 60%),
     radial-gradient(50% 50% at 0% 100%, rgba(43, 98, 143, .35), transparent 60%);
 }
-.hero .container { position: relative; }
+.hero .container { position: relative; text-align: center; }
 .hero h1 {
   color: #fff;
   font-size: clamp(2.1rem, 1.6rem + 2.4vw, 3.4rem);
   max-width: 18ch;
+  margin-inline: auto;
   margin-bottom: .4em;
 }
 .hero .hero-title { max-width: none; }
@@ -348,8 +354,10 @@ html.is-scrolled .brand { font-size: .92rem; }
   color: rgba(255, 255, 255, .82);
   font-size: clamp(1rem, .9rem + .4vw, 1.2rem);
   max-width: 56ch;
+  margin-inline: auto;
   margin-bottom: 1.8em;
 }
+.hero .btn-group { justify-content: center; }
 .hero.hero-compact { padding-block: clamp(3.5rem, 7vw, 5.5rem) clamp(2.5rem, 5vw, 4rem); }
 .hero.hero-compact h1 { font-size: clamp(1.9rem, 1.6rem + 1.4vw, 2.6rem); }
 
